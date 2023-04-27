@@ -1,15 +1,15 @@
 import React from 'react';
-import ParkForm from "main/components/Parks/ParkForm"
-import { parkFixtures } from 'fixtures/parkFixtures';
+import MovieForm from "main/components/Movies/MovieForm"
+import { movieFixtures } from 'fixtures/movieFixtures';
 
 export default {
-    title: 'components/Parks/ParkForm',
-    component: ParkForm
+    title: 'components/Movies/MovieForm',
+    component: MovieForm
 };
 
 const Template = (args) => {
     return (
-        <ParkForm {...args} />
+        <MovieForm {...args} />
     )
 };
 
@@ -23,7 +23,7 @@ Default.args = {
 export const Show = Template.bind({});
 
 Show.args = {
-    Park: parkFixtures.onePark,
+    Movie: movieFixtures.oneMovie,
     submitText: "",
     submitAction: () => { }
 };

@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
 
-function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function MovieForm({ initialContents, submitAction, buttonLabel = "Create" }) {
 
     const navigate = useNavigate();
     
@@ -17,7 +17,7 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
     );
     // Stryker enable all
    
-    const testIdPrefix = "ParkForm";
+    const testIdPrefix = "MovieForm";
 
     return (
 
@@ -38,50 +38,34 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             )}
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="name">Name</Form.Label>
+                <Form.Label htmlFor="title">Title</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-name"}
-                    id="name"
+                    data-testid={testIdPrefix + "-title"}
+                    id="title"
                     type="text"
-                    isInvalid={Boolean(errors.name)}
-                    {...register("name", {
-                        required: "Name is required.",
+                    isInvalid={Boolean(errors.title)}
+                    {...register("title", {
+                        required: "Title is required.",
                         maxLength : {
-                            value: 30,
-                            message: "Max length 30 characters"
+                            value: 100,
+                            message: "Max length 100 characters"
                         }
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.name?.message}
+                    {errors.title?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="address">Address</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-address"}
-                    id="address"
-                    type="text"
-                    isInvalid={Boolean(errors.description)}
-                    {...register("address", {
-                        required: "address is required."
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
                 <Form.Label htmlFor="rating">Rating</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-rating"}
                     id="rating"
                     type="text"
-                    isInvalid={Boolean(errors.description)}
+                    isInvalid={Boolean(errors.rating)}
                     {...register("rating", {
-                        required: "rating is required."
+                        required: "Rating is required."
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -89,7 +73,21 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-
+            <Form.Group className="mb-3" >
+                <Form.Label htmlFor="views">Views</Form.Label>
+                <Form.Control
+                    data-testid={testIdPrefix + "-views"}
+                    id="views"
+                    type="text"
+                    isInvalid={Boolean(errors.views)}
+                    {...register("views", {
+                        required: "Views is required."
+                    })}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.views?.message}
+                </Form.Control.Feedback>
+            </Form.Group>
 
             <Button
                 type="submit"
@@ -110,4 +108,4 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
     )
 }
 
-export default ParkForm;
+export default MovieForm;

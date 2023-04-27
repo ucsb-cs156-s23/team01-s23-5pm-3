@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import ParkForm from "main/components/Parks/ParkForm";
-import { parkFixtures } from "fixtures/parkFixtures";
+import MovieForm from "main/components/Movies/MovieForm";
+import { movieFixtures } from "fixtures/movieFixtures";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
@@ -13,17 +13,17 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("ParkForm tests", () => {
+describe("MovieForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name","Address","Rating"];
-    const testId = "ParkForm";
+    const expectedHeaders = ["Title","Rating","Views"];
+    const testId = "MovieForm";
 
     test("renders correctly with no initialContents", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <ParkForm />
+                    <MovieForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -41,7 +41,7 @@ describe("ParkForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <ParkForm initialContents={parkFixtures.onePark} />
+                    <MovieForm initialContents={movieFixtures.oneMovie} />
                 </Router>
             </QueryClientProvider>
         );
@@ -57,12 +57,12 @@ describe("ParkForm tests", () => {
         expect(screen.getByText(`Id`)).toBeInTheDocument();
     });
 
-
+   
     test("that navigate(-1) is called when Cancel is clicked", async () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <ParkForm />
+                    <MovieForm />
                 </Router>
             </QueryClientProvider>
         );
