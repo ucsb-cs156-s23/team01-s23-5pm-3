@@ -1,5 +1,5 @@
 const bookFixtures = {
-    onebook:
+    oneBook:
     [
       {
        "id": 1,
@@ -9,7 +9,7 @@ const bookFixtures = {
       }
     ],
 
-    threebooks:
+    threeBooks:
     [
         {
             "id": 2,
