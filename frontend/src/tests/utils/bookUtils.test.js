@@ -77,8 +77,8 @@ describe("bookUtils tests", () => {
         test("When books is JSON of three books, should return that JSON", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
-            const mockbookCollection = { nextId: 10, books: threebooks };
+            const threeBooks = bookFixtures.threeBooks;
+            const mockbookCollection = { nextId: 10, books: threeBooks };
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock(mockbookCollection));
@@ -100,28 +100,28 @@ describe("bookUtils tests", () => {
         test("Check that getting a book by id works", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
-            const idToGet = threebooks[1].id;
+            const threeBooks = bookFixtures.threeBooks;
+            const idToGet = threeBooks[1].id;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             // act
             const result = bookUtils.getById(idToGet);
 
             // assert
 
-            const expected = { book: threebooks[1] };
+            const expected = { book: threeBooks[1] };
             expect(result).toEqual(expected);
         });
 
         test("Check that getting a non-existing book returns an error", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             // act
             const result = bookUtils.getById(99);
@@ -134,10 +134,10 @@ describe("bookUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             // act
             const result = bookUtils.getById();
@@ -152,7 +152,7 @@ describe("bookUtils tests", () => {
         test("Starting from [], check that adding one book works", () => {
 
             // arrange
-            const book = bookFixtures.onebook[0];
+            const book = bookFixtures.oneBook[0];
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
             getItemSpy.mockImplementation(createGetItemMock({ nextId: 1, books: [] }));
 
@@ -165,7 +165,7 @@ describe("bookUtils tests", () => {
             // assert
             expect(result).toEqual(book);
             expect(setItemSpy).toHaveBeenCalledWith("books",
-                JSON.stringify({ nextId: 2, books: bookFixtures.onebook }));
+                JSON.stringify({ nextId: 2, books: bookFixtures.oneBook }));
         });
     });
 
@@ -173,19 +173,19 @@ describe("bookUtils tests", () => {
         test("Check that updating an existing book works", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
             const updatedbook = {
-                ...threebooks[0],
+                ...threeBooks[0],
                 name: "Updated Name"
             };
-            const threebooksUpdated = [
+            const threeBooksUpdated = [
                 updatedbook,
-                threebooks[1],
-                threebooks[2]
+                threeBooks[1],
+                threeBooks[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -194,17 +194,17 @@ describe("bookUtils tests", () => {
             const result = bookUtils.update(updatedbook);
 
             // assert
-            const expected = { bookCollection: { nextId: 5, books: threebooksUpdated } };
+            const expected = { bookCollection: { nextId: 5, books: threeBooksUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("books", JSON.stringify(expected.bookCollection));
         });
         test("Check that updating an non-existing book returns an error", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -229,15 +229,15 @@ describe("bookUtils tests", () => {
         test("Check that deleting a book by id works", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
-            const idToDelete = threebooks[1].id;
-            const threebooksUpdated = [
-                threebooks[0],
-                threebooks[2]
+            const threeBooks = bookFixtures.threeBooks;
+            const idToDelete = threeBooks[1].id;
+            const threeBooksUpdated = [
+                threeBooks[0],
+                threeBooks[2]
             ];
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -247,17 +247,17 @@ describe("bookUtils tests", () => {
 
             // assert
 
-            const expected = { bookCollection: { nextId: 5, books: threebooksUpdated } };
+            const expected = { bookCollection: { nextId: 5, books: threeBooksUpdated } };
             expect(result).toEqual(expected);
             expect(setItemSpy).toHaveBeenCalledWith("books", JSON.stringify(expected.bookCollection));
         });
         test("Check that deleting a non-existing book returns an error", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             const setItemSpy = jest.spyOn(Storage.prototype, 'setItem');
             setItemSpy.mockImplementation((_key, _value) => null);
@@ -273,10 +273,10 @@ describe("bookUtils tests", () => {
         test("Check that an error is returned when id not passed", () => {
 
             // arrange
-            const threebooks = bookFixtures.threebooks;
+            const threeBooks = bookFixtures.threeBooks;
 
             const getItemSpy = jest.spyOn(Storage.prototype, 'getItem');
-            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threebooks }));
+            getItemSpy.mockImplementation(createGetItemMock({ nextId: 5, books: threeBooks }));
 
             // act
             const result = bookUtils.del();
