@@ -58,7 +58,7 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
             </Form.Group>
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="address">Description</Form.Label>
+                <Form.Label htmlFor="address">address</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-address"}
                     id="address"
@@ -73,19 +73,19 @@ function ParkForm({ initialContents, submitAction, buttonLabel = "Create" }) {
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3" >
-                <Form.Label htmlFor="rating">Description</Form.Label>
+            <Form.Group className="mb-3">
+                <Form.Label htmlFor="rating">rating</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-rating"}
                     id="rating"
-                    type="text"
-                    isInvalid={Boolean(errors.description)}
+                    type="number"
                     {...register("rating", {
-                        required: "rating is required."
+                        required: "Rating is required.",
+                        valueAsNumber: true // add this to ensure value is parsed as a number
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.description?.message}
+                    {errors.rating?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
