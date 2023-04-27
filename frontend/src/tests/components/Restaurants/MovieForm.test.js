@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("MovieForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Name","Description"];
+    const expectedHeaders = ["Title","Rating","Views"];
     const testId = "MovieForm";
 
     test("renders correctly with no initialContents", async () => {
