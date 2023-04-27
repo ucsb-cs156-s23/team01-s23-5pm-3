@@ -1,6 +1,6 @@
 import React from 'react';
 import ParkForm from "main/components/Parks/ParkForm"
-import { parkFixtures } from 'fixtures/parkFixture';
+import { parkFixtures } from 'fixtures/parkFixtures';
 
 export default {
     title: 'components/Parks/ParkForm',
