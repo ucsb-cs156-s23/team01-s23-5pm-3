@@ -284,7 +284,7 @@ describe("restaurantUtils tests", () => {
             // assert
             const expectedError = `id is a required parameter`
             expect(result).toEqual({ error: expectedError });
-        });
+        }); //
     });
 });
 
