@@ -200,6 +200,7 @@ describe("parkUtils tests", () => {
         });
         test("Check that updating an non-existing park returns an error", () => {
 
+
             // arrange
             const threeParks = parkFixtures.threeParks;
 
