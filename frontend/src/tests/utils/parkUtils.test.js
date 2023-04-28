@@ -4,7 +4,7 @@ import { parkUtils } from "main/utils/parkUtils";
 describe("parkUtils tests", () => {
     // return a function that can be used as a mock implementation of getItem
     // the value passed in will be convertd to JSON and returned as the value
-    // for the key "parks".  Any other key results in an error
+    // for the key "parks".  any other key results in an error
     const createGetItemMock = (returnValue) => (key) => {
         if (key === "parks") {
             return JSON.stringify(returnValue);

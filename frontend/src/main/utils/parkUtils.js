@@ -55,7 +55,7 @@ const update = (park) => {
     if (index === -1) {
         return { "error": `park with id ${park.id} not found` };
     }
-    parks[index] = [park];
+    parks[index] = park;
     set(parkCollection);
     return { parkCollection: parkCollection };
 };
