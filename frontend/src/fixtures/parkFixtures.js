@@ -26,7 +26,7 @@ const parkFixtures = {
         },
 
         {
-            "id": 3,
+            "id": 4,
             "name": "Window To The Sea Park",
             "address": "6693 Del Playa Dr, Goleta, CA 93117",
             "rating": "4.7",    
