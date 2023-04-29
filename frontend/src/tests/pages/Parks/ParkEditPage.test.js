@@ -19,16 +19,14 @@ jest.mock('main/utils/parkUtils', () => {
     return {
         __esModule: true,
         parkUtils: {
-            update: (_Park) => {return mockUpdate();},
+            update: (_park) => {return mockUpdate();},
             getById: (_id) => {
                 return {
-                    Park: {
-                        park: {
-                            id: 3,
-                            name: "Anderson Park",
-                            address: "123 Fake Ave",
-                            rating: "3.9"
-                        }
+                    park: {
+                        id: 3,
+                        name: "Anderson Park",
+                        address: "123 Fake Ave",
+                        rating: "3.9"
                     }
                 }
             }
@@ -61,11 +59,10 @@ describe("ParkEditPage tests", () => {
             </QueryClientProvider>
         );
 
-        expect(screen.getByTestId("ParkForm-title")).toBeInTheDocument();
+        expect(screen.getByTestId("ParkForm-name")).toBeInTheDocument();
         expect(screen.getByDisplayValue('Anderson Park')).toBeInTheDocument();
         expect(screen.getByDisplayValue('123 Fake Ave')).toBeInTheDocument();
         expect(screen.getByDisplayValue('3.9')).toBeInTheDocument();
-
     });
 
     test("redirects to /parks on submit", async () => {
@@ -73,11 +70,11 @@ describe("ParkEditPage tests", () => {
         const restoreConsole = mockConsole();
 
         mockUpdate.mockReturnValue({
-            "Park": {
+            "park": {
                 id: 3,
-                name: "Anderson Park",
-                address: "123 Fake Ave",
-                rating: "3.9"
+                name: "Dog Park",
+                address: "123 Ave",
+                rating: "4"
             }
         });
 
@@ -89,24 +86,23 @@ describe("ParkEditPage tests", () => {
             </QueryClientProvider>
         )
 
-        const titleInput = screen.getByLabelText("Name");
-        expect(titleInput).toBeInTheDocument();
+        const nameInput = screen.getByLabelText("Name");
+        expect(nameInput).toBeInTheDocument();
 
 
-        const authorInput = screen.getByLabelText("Address");
-        expect(authorInput).toBeInTheDocument();
-
-        const genreInput = screen.getByLabelText("Rating");
-        expect(genreInput).toBeInTheDocument();
+        const addressInput = screen.getByLabelText("Address");
+        expect(addressInput).toBeInTheDocument();
+        
+        const ratingInput = screen.getByLabelText("Rating");
+        expect(ratingInput).toBeInTheDocument();
 
         const updateButton = screen.getByText("Update");
         expect(updateButton).toBeInTheDocument();
 
         await act(async () => {
-            fireEvent.change(titleInput, { target: { value: 'Anderson Park' } })
-            fireEvent.change(authorInput, { target: { value: '123 Fake Ave' } })
-            fireEvent.change(genreInput, { target: { value: '3.9' } })
-
+            fireEvent.change(nameInput, { target: { value: 'Dog Park' } })
+            fireEvent.change(addressInput, { target: { value: '123 Ave' } })
+            fireEvent.change(ratingInput, { target: { value: '4' } })
             fireEvent.click(updateButton);
         });
 
@@ -116,7 +112,7 @@ describe("ParkEditPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedPark: {"Park":{"id":3,"name":"Anderson Park","address":"123 Fake Ave","rating":"3.9"}}`
+        const expectedMessage =  `updatedPark: {"park":{"id":3,"name":"Dog Park","address":"123 Ave","rating":"4"}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();

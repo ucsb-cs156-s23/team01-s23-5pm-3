@@ -13,8 +13,8 @@ export default function ParkEditPage() {
 
     const response = parkUtils.getById(id);
 
-    const onSubmit = async (Park) => {
-        const updatedPark = parkUtils.update(Park);
+    const onSubmit = async (park) => {
+        const updatedPark = parkUtils.update(park);
         console.log("updatedPark: " + JSON.stringify(updatedPark));
         navigate("/parks");
     }  
@@ -23,7 +23,7 @@ export default function ParkEditPage() {
         <BasicLayout>
             <div className="pt-2">
                 <h1>Edit Park</h1>
-                <ParkForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.Park}/>
+                <ParkForm submitAction={onSubmit} buttonLabel={"Update"} initialContents={response.park}/>
             </div>
         </BasicLayout>
     )
