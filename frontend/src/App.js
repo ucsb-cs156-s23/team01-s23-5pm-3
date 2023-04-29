@@ -15,6 +15,16 @@ import BookEditPage from "main/pages/Books/BookEditPage";
 import BookIndexPage from "main/pages/Books/BookIndexPage";
 import BookDetailsPage from "main/pages/Books/BookDetailsPage";
 
+import MovieCreatePage from "main/pages/Movies/MovieCreatePage";
+import MovieEditPage from "main/pages/Movies/MovieEditPage";
+import MovieIndexPage from "main/pages/Movies/MovieIndexPage";
+import MovieDetailsPage from "main/pages/Movies/MovieDetailsPage";
+
+import ParkCreatePage from "main/pages/Parks/ParkCreatePage";
+import ParkEditPage from "main/pages/Parks/ParkEditPage";
+import ParkIndexPage from "main/pages/Parks/ParkIndexPage";
+import ParkDetailsPage from "main/pages/Parks/ParkDetailsPage";
+
 
 function App() {
 
@@ -39,6 +49,17 @@ function App() {
         <Route exact path="/books/edit/:id" element={<BookEditPage />} />
         <Route exact path="/books/details/:id" element={<BookDetailsPage />} />
         <Route exact path="/books/" element={<BookIndexPage />} />
+
+        <Route exact path="/movies/create" element={<MovieCreatePage />} />
+        <Route exact path="/movies/edit/:id" element={<MovieEditPage />} />
+        <Route exact path="/movies/details/:id" element={<MovieDetailsPage />} />
+        <Route exact path="/movies/" element={<MovieIndexPage />} />
+
+        <Route exact path="/parks/create" element={<ParkCreatePage />} />
+        <Route exact path="/parks/edit/:id" element={<ParkEditPage />} />
+        <Route exact path="/movies/details/:id" element={<ParkDetailsPage />} />
+        <Route exact path="/parks/" element={<ParkIndexPage />} />
+
 
       </Routes>
     </BrowserRouter>
