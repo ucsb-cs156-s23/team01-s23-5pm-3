@@ -26,6 +26,7 @@ export default function AppNavbar() {
               </NavDropdown>
               <Nav.Link as={Link} to="/restaurants">Restaurants</Nav.Link>
               <Nav.Link as={Link} to="/movies">Movies</Nav.Link>
+              <Nav.Link as={Link} to="/parks">Parks</Nav.Link>
               <Nav.Link as={Link} to="/books">Books</Nav.Link>
             </Nav>
           </Navbar.Collapse>
