@@ -57,7 +57,7 @@ function App() {
 
         <Route exact path="/parks/create" element={<ParkCreatePage />} />
         <Route exact path="/parks/edit/:id" element={<ParkEditPage />} />
-        <Route exact path="/movies/details/:id" element={<ParkDetailsPage />} />
+        <Route exact path="/parks/details/:id" element={<ParkDetailsPage />} />
         <Route exact path="/parks/" element={<ParkIndexPage />} />
 
 
