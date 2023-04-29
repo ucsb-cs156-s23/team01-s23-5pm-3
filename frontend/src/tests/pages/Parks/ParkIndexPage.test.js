@@ -112,7 +112,7 @@ describe("ParkIndexPage tests", () => {
         // assert - check that the console.log was called with the expected message
         expect(console.log).toHaveBeenCalled();
         const message = console.log.mock.calls[0][0];
-        const expectedMessage =  `updatedPark: {"Park":{"id":3,"name":"Anderson Park","address":"123 Fake Ave","rating":"3.9"}}`
+        const expectedMessage =  `ParkIndexPage deleteCallback: {"Park":{"id":3,"name":"Anderson Park","address":"123 Fake Ave","rating":"3.9"}}`
 
         expect(message).toMatch(expectedMessage);
         restoreConsole();
